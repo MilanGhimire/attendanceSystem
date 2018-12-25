@@ -5,15 +5,15 @@ using System.Windows.Forms;
 
 namespace StudentAttendence.Controller
 {
-    class UserAccount
+    public class UserAccount
     {
         private MySqlConnection connect;
 
         //instance Variables
         public int ua_id;
-        String ua_username;
-        String ua_role;
-        int ua_department_id;
+        public string ua_username;
+        public int ua_role;
+        public int ua_department_id;
 
         public UserAccount()
         {
@@ -49,7 +49,7 @@ namespace StudentAttendence.Controller
                 {
                     this.ua_id = Convert.ToInt32(dataTable.Rows[0]["ua_id"]);
                     this.ua_username = dataTable.Rows[0]["ua_username"].ToString();
-                    this.ua_role = dataTable.Rows[0]["ua_role"].ToString();
+                    this.ua_role = Convert.ToInt32(dataTable.Rows[0]["ua_role"]);
                     this.ua_department_id = Convert.ToInt32(dataTable.Rows[0]["ua_department_id"]);
                     MessageBox.Show("Welcome." + this.ua_role);
                     checkValidation = true;

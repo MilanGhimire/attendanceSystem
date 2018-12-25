@@ -24,7 +24,7 @@ namespace StudentAttendence
             {
                 UsernameTextBox.Clear();
                 PasswordTextBox.Clear();
-                HomeForm homeForm = new HomeForm();
+                HomeForm homeForm = new HomeForm(userAccount);
                 homeForm.ShowDialog();
             }
         }

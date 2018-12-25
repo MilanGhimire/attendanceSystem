@@ -13,7 +13,7 @@ namespace StudentAttendence
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new HomeForm());
+            Application.Run(new FormLogin());
         }
     }
 }

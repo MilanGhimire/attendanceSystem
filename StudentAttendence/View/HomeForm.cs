@@ -5,11 +5,12 @@ namespace StudentAttendence
 {
     public partial class HomeForm : Form
     {
-        Controller.UserAccount userAccount;
+        public Controller.UserAccount userAccount;
 
-        public HomeForm()
+        public HomeForm(Controller.UserAccount ua)
         {
             InitializeComponent();
+            userAccount = ua;
         }
 
         private void HomeForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -94,6 +95,13 @@ namespace StudentAttendence
         {
             View.View.ViewUserAccount viewUserAccount = new View.View.ViewUserAccount();
             viewUserAccount.ShowDialog();
+        }
+
+        private void HomeForm_Load(object sender, EventArgs e)
+        {
+            Controller.Department department = new Controller.Department();
+            Controller.Role role = new Controller.Role();
+            labelDepartmentTitle.Text = "Welcome to :" + department.GetDepartmentName(userAccount.ua_department_id) + " department.\nRole : " + role.GetRoleName(userAccount.ua_role);
         }
     }
 }

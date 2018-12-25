@@ -188,5 +188,29 @@ namespace StudentAttendence.Controller
             }
             return checkValidation;
         }
+
+        public string GetDepartmentName(int departmentID)
+        {
+            string departmentName = string.Empty;
+            try
+            {
+                connect.Open();
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `dept_id`, `dept_name`, `gradutaion_type`, `course_duration` FROM `db_student_attendance`.`tbl_department` WHERE `dept_id` = " + departmentID + ";", this.connect);
+                MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
+                DataTable dataTable = new DataTable();
+                mySqlDataAdapter.Fill(dataTable);
+                departmentName = dataTable.Rows[0]["dept_name"].ToString();
+                dataTable.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Get Department Name: " + ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                connect.Close();
+            }
+            return departmentName;
+        }
     }
 }

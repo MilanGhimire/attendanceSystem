@@ -4,7 +4,7 @@ using System;
 using System.Data;
 using System.Windows.Forms;
 
-namespace StudentAttendence.Modal
+namespace StudentAttendence.Controller
 {
     class Role
     {
@@ -47,6 +47,30 @@ namespace StudentAttendence.Modal
             {
                 connect.Close();
             }
+        }
+
+        public string GetRoleName(int roleID)
+        {
+            string roleName = string.Empty;
+            try
+            {
+                connect.Open();
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `role_id`, `role_name` FROM `db_student_attendance`.`tbl_role` WHERE `role_id` = " + roleID + ";", this.connect);
+                MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
+                DataTable dataTable = new DataTable();
+                mySqlDataAdapter.Fill(dataTable);
+                roleName = dataTable.Rows[0]["role_name"].ToString();
+                dataTable.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Get Role Name: " + ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                connect.Close();
+            }
+            return roleName;
         }
     }
 }

@@ -52,12 +52,13 @@
             this.viewUserAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelDepartmentTitle = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonViewStudent
             // 
-            this.buttonViewStudent.Location = new System.Drawing.Point(68, 80);
+            this.buttonViewStudent.Location = new System.Drawing.Point(68, 147);
             this.buttonViewStudent.Name = "buttonViewStudent";
             this.buttonViewStudent.Size = new System.Drawing.Size(119, 30);
             this.buttonViewStudent.TabIndex = 0;
@@ -66,7 +67,7 @@
             // 
             // buttonViewAttandance
             // 
-            this.buttonViewAttandance.Location = new System.Drawing.Point(68, 159);
+            this.buttonViewAttandance.Location = new System.Drawing.Point(68, 226);
             this.buttonViewAttandance.Name = "buttonViewAttandance";
             this.buttonViewAttandance.Size = new System.Drawing.Size(119, 30);
             this.buttonViewAttandance.TabIndex = 2;
@@ -75,7 +76,7 @@
             // 
             // buttonViewTeacher
             // 
-            this.buttonViewTeacher.Location = new System.Drawing.Point(255, 80);
+            this.buttonViewTeacher.Location = new System.Drawing.Point(255, 147);
             this.buttonViewTeacher.Name = "buttonViewTeacher";
             this.buttonViewTeacher.Size = new System.Drawing.Size(119, 30);
             this.buttonViewTeacher.TabIndex = 3;
@@ -107,7 +108,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // editToolStripMenuItem
@@ -189,49 +190,49 @@
             // viewStudentToolStripMenuItem
             // 
             this.viewStudentToolStripMenuItem.Name = "viewStudentToolStripMenuItem";
-            this.viewStudentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewStudentToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.viewStudentToolStripMenuItem.Text = "View Student";
             this.viewStudentToolStripMenuItem.Click += new System.EventHandler(this.viewStudentToolStripMenuItem_Click);
             // 
             // viewTeacherToolStripMenuItem
             // 
             this.viewTeacherToolStripMenuItem.Name = "viewTeacherToolStripMenuItem";
-            this.viewTeacherToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewTeacherToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.viewTeacherToolStripMenuItem.Text = "View Teacher";
             this.viewTeacherToolStripMenuItem.Click += new System.EventHandler(this.viewTeacherToolStripMenuItem_Click);
             // 
             // viewSemesterToolStripMenuItem
             // 
             this.viewSemesterToolStripMenuItem.Name = "viewSemesterToolStripMenuItem";
-            this.viewSemesterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewSemesterToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.viewSemesterToolStripMenuItem.Text = "View Semester";
             this.viewSemesterToolStripMenuItem.Click += new System.EventHandler(this.viewSemesterToolStripMenuItem_Click);
             // 
             // viewSubjectToolStripMenuItem
             // 
             this.viewSubjectToolStripMenuItem.Name = "viewSubjectToolStripMenuItem";
-            this.viewSubjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewSubjectToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.viewSubjectToolStripMenuItem.Text = "View Subject";
             this.viewSubjectToolStripMenuItem.Click += new System.EventHandler(this.viewSubjectToolStripMenuItem_Click);
             // 
             // viewSectionToolStripMenuItem
             // 
             this.viewSectionToolStripMenuItem.Name = "viewSectionToolStripMenuItem";
-            this.viewSectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewSectionToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.viewSectionToolStripMenuItem.Text = "View Section";
             this.viewSectionToolStripMenuItem.Click += new System.EventHandler(this.viewSectionToolStripMenuItem_Click);
             // 
             // viewDepartmentToolStripMenuItem
             // 
             this.viewDepartmentToolStripMenuItem.Name = "viewDepartmentToolStripMenuItem";
-            this.viewDepartmentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewDepartmentToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.viewDepartmentToolStripMenuItem.Text = "View Department";
             this.viewDepartmentToolStripMenuItem.Click += new System.EventHandler(this.viewDepartmentToolStripMenuItem_Click);
             // 
             // viewUserAccountToolStripMenuItem
             // 
             this.viewUserAccountToolStripMenuItem.Name = "viewUserAccountToolStripMenuItem";
-            this.viewUserAccountToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewUserAccountToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.viewUserAccountToolStripMenuItem.Text = "View User Account";
             this.viewUserAccountToolStripMenuItem.Click += new System.EventHandler(this.viewUserAccountToolStripMenuItem_Click);
             // 
@@ -247,12 +248,23 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
+            // labelDepartmentTitle
+            // 
+            this.labelDepartmentTitle.AutoSize = true;
+            this.labelDepartmentTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDepartmentTitle.Location = new System.Drawing.Point(12, 36);
+            this.labelDepartmentTitle.Name = "labelDepartmentTitle";
+            this.labelDepartmentTitle.Size = new System.Drawing.Size(156, 31);
+            this.labelDepartmentTitle.TabIndex = 22;
+            this.labelDepartmentTitle.Text = "Department";
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(613, 461);
+            this.Controls.Add(this.labelDepartmentTitle);
             this.Controls.Add(this.buttonViewTeacher);
             this.Controls.Add(this.buttonViewAttandance);
             this.Controls.Add(this.buttonViewStudent);
@@ -263,6 +275,7 @@
             this.Name = "HomeForm";
             this.Text = "Home";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HomeForm_FormClosing);
+            this.Load += new System.EventHandler(this.HomeForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -296,5 +309,6 @@
         private System.Windows.Forms.ToolStripMenuItem viewDepartmentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewUserAccountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addUserAccountToolStripMenuItem;
+        private System.Windows.Forms.Label labelDepartmentTitle;
     }
 }

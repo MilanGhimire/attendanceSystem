@@ -47,7 +47,7 @@ namespace StudentAttendence
         private void AddUserAccount_Load(object sender, EventArgs e)
         {
             Controller.Department department = new Controller.Department();
-            Modal.Role role = new Modal.Role();
+            Controller.Role role = new Controller.Role();
             department.LoadAllDepartment(comboBoxDepartmentName);
             role.LoadAllRole(comboBoxRole);
 
