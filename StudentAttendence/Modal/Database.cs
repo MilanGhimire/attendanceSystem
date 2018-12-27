@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Configuration;
 using MySql.Data.MySqlClient;
 
 namespace StudentAttendence.Controller
 {
     class Database
     {
-        public static String connectionString = "Data Source = localhost; user = root; password = @part; database = db_attendance_assistance";
+        public static String value = ConfigurationManager.AppSettings["key"];
+
+        public static String connectionString = "Data Source = localhost; user = root; password = @part; database = db_student_attendance";
         private MySqlConnection connect;
 
         public MySqlConnection getDatabaseConnection()
@@ -17,6 +20,7 @@ namespace StudentAttendence.Controller
             }
             else
             {
+                System.Console.WriteLine("Connection is already open." + value);
                 //System.Console.WriteLine("connection is new.");
                 connect = new MySqlConnection(connectionString);
                 return connect;

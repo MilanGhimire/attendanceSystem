@@ -29,7 +29,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `subject_id`, `subject_department_id`, `subject_semester_id`, `subject_teacher_id`, `subject_name` FROM `tbl_subject` WHERE `subject_department_id` = @department AND `subject_semester_id` = @semester;", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `subject_id`, `dept_id`, `sem_id`, `teacher_id`, `subject_name` FROM `tbl_subject` WHERE `dept_id` = @department AND `sem_id` = @semester;", this.connect);
                 mySqlCommand.Parameters.Clear();
                 mySqlCommand.Parameters.Add(new MySqlParameter("@department", department));
                 mySqlCommand.Parameters.Add(new MySqlParameter("@semester", semester));
@@ -91,7 +91,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("INSERT INTO `tbl_subject`(`subject_department_id`, `subject_semester_id`, `subject_teacher_id`, `subject_name`) VALUES (@department, @semester, @teacher, @subject);", connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("INSERT INTO `tbl_subject`(`dept_id`, `sem_id`, `teacher_id`, `subject_name`) VALUES (@department, @semester, @teacher, @subject);", connect);
                 mySqlCommand.Parameters.Clear();
                 mySqlCommand.Parameters.Add(new MySqlParameter("@department", department_id));
                 mySqlCommand.Parameters.Add(new MySqlParameter("@semester", semester));
@@ -118,7 +118,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT sub.`subject_id`, d.`dept_name`, sem.`sem_name`, t.`teacher_name`, sub.`subject_name` FROM `tbl_subject` AS sub INNER JOIN `tbl_department` AS d ON sub.`subject_department_id` = d.`dept_id` INNER JOIN `tbl_semester` AS sem ON sub.`subject_semester_id` = sem.`sem_id` INNER JOIN `tbl_teacher` AS t ON sub.`subject_teacher_id` = t.`teacher_id`;", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT sub.`subject_id`, d.`dept_name`, sem.`sem_name`, t.`teacher_name`, sub.`subject_name` FROM `tbl_subject` AS sub INNER JOIN `tbl_department` AS d ON sub.`dept_id` = d.`dept_id` INNER JOIN `tbl_semester` AS sem ON sub.`sem_id` = sem.`sem_id` INNER JOIN `tbl_teacher` AS t ON sub.`teacher_id` = t.`teacher_id`;", this.connect);
                 using (MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader())
                 {
                     //To count how many rows are fetched from Database
@@ -147,13 +147,13 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `subject_id`, `subject_department_id`, `subject_semester_id`, `subject_teacher_id`, `subject_name` FROM `db_student_attendance`.`tbl_subject` WHERE `subject_id` = " + this.subjectID + ";", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `subject_id`, `dept_id`, `sem_id`, `teacher_id`, `subject_name` FROM `db_student_attendance`.`tbl_subject` WHERE `subject_id` = " + this.subjectID + ";", this.connect);
                 MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
                 DataTable dataTable = new DataTable();
                 mySqlDataAdapter.Fill(dataTable);
-                semester.SelectedValue = dataTable.Rows[0]["subject_semester_id"];
+                semester.SelectedValue = dataTable.Rows[0]["sem_id"];
                 subjectName.Text = dataTable.Rows[0]["subject_name"].ToString();
-                teacherName.SelectedValue = dataTable.Rows[0]["subject_teacher_id"];
+                teacherName.SelectedValue = dataTable.Rows[0]["teacher_id"];
                 dataTable.Dispose();
             }
             catch (Exception ex)
@@ -172,7 +172,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("UPDATE `db_student_attendance`.`tbl_subject` SET `subject_department_id` = @department_id, `subject_semester_id` = @semester, `subject_teacher_id` = @teacher_id, `subject_name` = @subject WHERE `subject_id` = " + this.subjectID + "; ", connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("UPDATE `db_student_attendance`.`tbl_subject` SET `dept_id` = @department_id, `sem_id` = @semester, `teacher_id` = @teacher_id, `subject_name` = @subject WHERE `subject_id` = " + this.subjectID + "; ", connect);
                 mySqlCommand.Parameters.Clear();
                 mySqlCommand.Parameters.Add(new MySqlParameter("@department_id", department_id));
                 mySqlCommand.Parameters.Add(new MySqlParameter("@semester", semester));
@@ -201,7 +201,7 @@ namespace StudentAttendence.Controller
             {
                 //SELECT a.`attendace_id`, stu.`student_name`, a.`teacher_id`, a.`section_id`, a.`subject_id`, a.`attendance_semester`, a.`attendance_date`, a.`attendance_status` FROM `db_student_attendance`.`tbl_attendance` AS a INNER JOIN `tbl_student` AS stu ON a.`student_id` = stu.`student_id` WHERE a.`section_id` = 1 AND a.`subject_id` = 1 AND a.`subject_id` = 1
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `subject_id`, `subject_department_id`, `subject_semester_id`, `subject_section_id`, `subject_teacher_id`, `subject_name` FROM `db_student_attendance`.`tbl_subject` WHERE `subject_department_id` = 1 AND `subject_semester_id` = 1 AND `subject_section_id` = 1", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `subject_id`, `dept_id`, `sem_id`, `subject_section_id`, `teacher_id`, `subject_name` FROM `db_student_attendance`.`tbl_subject` WHERE `dept_id` = 1 AND `sem_id` = 1 AND `subject_section_id` = 1", this.connect);
                 mySqlCommand.Parameters.Clear();
                 using (MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader())
                 {
