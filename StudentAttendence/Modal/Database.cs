@@ -8,7 +8,7 @@ namespace StudentAttendence.Controller
     {
         public static String value = ConfigurationManager.AppSettings["key"];
 
-        public static String connectionString = "Data Source = localhost; user = root; password = @part; database = db_student_attendance";
+        public static String connectionString = "Data Source = "+ value +"; user = root; password = @part; database = db_student_attendance";
         private MySqlConnection connect;
 
         public MySqlConnection getDatabaseConnection()

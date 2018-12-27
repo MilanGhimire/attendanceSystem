@@ -104,7 +104,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `ua_id`, `ua_username`, `ua_password`, `ua_role`, `ua_department_id` FROM `db_student_attendance`.`tbl_user_account` WHERE `ua_id` = " + this.ua_id + "; ", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `ua_id`, `ua_username`, `ua_password`, `ua_role`, `ua_department_id` FROM `db_attendance_assistance`.`tbl_user_account` WHERE `ua_id` = " + this.ua_id + "; ", this.connect);
                 MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
                 DataTable dataTable = new DataTable();
                 mySqlDataAdapter.Fill(dataTable);
@@ -129,7 +129,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `ua_id`, `ua_username`, `ua_password`, `ua_role`, `ua_department_id` FROM `db_student_attendance`.`tbl_user_account` WHERE `ua_id` = " + this.ua_id + "; ", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `ua_id`, `ua_username`, `ua_password`, `ua_role`, `ua_department_id` FROM `db_attendance_assistance`.`tbl_user_account` WHERE `ua_id` = " + this.ua_id + "; ", this.connect);
                 MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
                 DataTable dataTable = new DataTable();
                 mySqlDataAdapter.Fill(dataTable);
@@ -154,7 +154,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `ua_id`, `ua_username`, `ua_password`, `ua_role`, `ua_department_id` FROM `db_student_attendance`.`tbl_user_account` WHERE `ua_id` = " + this.ua_id + "; ", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `ua_id`, `ua_username`, `ua_password`, `ua_role`, `ua_department_id` FROM `db_attendance_assistance`.`tbl_user_account` WHERE `ua_id` = " + this.ua_id + "; ", this.connect);
                 MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
                 DataTable dataTable = new DataTable();
                 mySqlDataAdapter.Fill(dataTable);
@@ -189,7 +189,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("INSERT INTO `db_student_attendance`.`tbl_user_account` (`ua_username`, `ua_password`, `ua_role`, `ua_department_id`) VALUES(@username, @password, @role, @department);", connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("INSERT INTO `db_attendance_assistance`.`tbl_user_account` (`ua_username`, `ua_password`, `ua_role`, `ua_department_id`) VALUES(@username, @password, @role, @department);", connect);
                 mySqlCommand.Parameters.Clear();
                 mySqlCommand.Parameters.Add(new MySqlParameter("@username", username));
                 mySqlCommand.Parameters.Add(new MySqlParameter("@password", password));
@@ -217,7 +217,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT  `ua_id`, `ua_username`, `ua_password`, `ua_role`, `ua_department_id` FROM `db_student_attendance`.`tbl_user_account` WHERE `ua_username` = @name", connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT  `ua_id`, `ua_username`, `ua_password`, `ua_role`, `ua_department_id` FROM `db_attendance_assistance`.`tbl_user_account` WHERE `ua_username` = @name", connect);
                 mySqlCommand.Parameters.Clear();
                 mySqlCommand.Parameters.Add(new MySqlParameter("@name", name));
 
@@ -248,7 +248,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("UPDATE `db_student_attendance`.`tbl_user_account` SET `ua_username` = @username, `ua_role` = @role, `ua_department_id` = @departmentID WHERE `ua_id` = " + this.ua_id + "; ", connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("UPDATE `db_attendance_assistance`.`tbl_user_account` SET `ua_username` = @username, `ua_role` = @role, `ua_department_id` = @departmentID WHERE `ua_id` = " + this.ua_id + "; ", connect);
                 mySqlCommand.Parameters.Clear();
                 mySqlCommand.Parameters.Add(new MySqlParameter("@username", username));
                 mySqlCommand.Parameters.Add(new MySqlParameter("@role", role));
@@ -276,7 +276,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `ua_id`, `ua_username`, `ua_password`,  `ua_role`, `ua_department_id` FROM `db_student_attendance`.`tbl_user_account` WHERE `ua_id` = @userID AND  `ua_password` = @password", connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `ua_id`, `ua_username`, `ua_password`,  `ua_role`, `ua_department_id` FROM `db_attendance_assistance`.`tbl_user_account` WHERE `ua_id` = @userID AND  `ua_password` = @password", connect);
                 mySqlCommand.Parameters.Clear();
                 mySqlCommand.Parameters.Add(new MySqlParameter("@userID", userID));
                 mySqlCommand.Parameters.Add(new MySqlParameter("@password", password));

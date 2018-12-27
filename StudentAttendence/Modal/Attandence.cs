@@ -63,7 +63,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `student_id`, `dept_id`, `sem_id`, `sec_id`, `student_name`, `student_card_id`, `student_contact`, `parents_contact`, `student_address`, `student_email` FROM `db_student_attendance`.`tbl_student` WHERE `sem_id` = 1 AND `sec_id` = 1", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `student_id`, `dept_id`, `sem_id`, `sec_id`, `student_name`, `student_card_id`, `student_contact`, `parents_contact`, `student_address`, `student_email` FROM `db_attendance_assistance`.`tbl_student` WHERE `sem_id` = 1 AND `sec_id` = 1", this.connect);
                 mySqlCommand.Parameters.Clear();
                 //mySqlCommand.Parameters.Add(new MySqlParameter("@semesterID", semesterID));
                 //mySqlCommand.Parameters.Add(new MySqlParameter("@sectionID", sectionID));
@@ -80,7 +80,7 @@ namespace StudentAttendence.Controller
                 int a = 1;
                 foreach (var item in array)
                 {
-                    mySqlCommand = new MySqlCommand("SELECT `attendace_id`, `student_id`, `teacher_id`, `section_id`, `subject_id`, `attendance_semester`, `attendance_date`, `attendance_status` FROM `db_student_attendance`.`tbl_attendance` WHERE `student_id` = " + item + " AND `subject_id` = 1 AND `attendance_date` = CURRENT_DATE", this.connect);
+                    mySqlCommand = new MySqlCommand("SELECT `attendace_id`, `student_id`, `teacher_id`, `section_id`, `subject_id`, `attendance_semester`, `attendance_date`, `attendance_status` FROM `db_attendance_assistance`.`tbl_attendance` WHERE `student_id` = " + item + " AND `subject_id` = 1 AND `attendance_date` = CURRENT_DATE", this.connect);
                     mySqlCommand.Parameters.Clear();
                     //mySqlCommand.Parameters.Add(new MySqlParameter("@subjectID", subjectID));
 
@@ -124,7 +124,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT DISTINCT a.`student_id`, a.`attendace_id`, stu.`student_name`, stu.`student_card_id`, stu.`student_contact`, stu.`parents_contact`, sem.`sem_name`, a.`teacher_id`, a.`section_id`, sec.`sec_name`, a.`subject_id`, sub.`subject_name`, a.`attendance_semester`, a.`attendance_date`, a.`attendance_status` FROM `db_student_attendance`.`tbl_attendance` AS a INNER JOIN `tbl_student` AS stu ON a.`student_id` = stu.`student_id` INNER JOIN `tbl_semester` AS sem ON stu.`sem_id` = sem.`sem_id` INNER JOIN `tbl_section` AS sec ON a.`section_id` = sec.`sec_id` INNER JOIN `tbl_subject` AS sub ON a.`subject_id` = sub.`subject_id` WHERE a.`attendance_status` = 0 AND a.`attendance_date` = @date AND stu.`dept_id` = 1 GROUP BY a.`student_id`", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT DISTINCT a.`student_id`, a.`attendace_id`, stu.`student_name`, stu.`student_card_id`, stu.`student_contact`, stu.`parents_contact`, sem.`sem_name`, a.`teacher_id`, a.`section_id`, sec.`sec_name`, a.`subject_id`, sub.`subject_name`, a.`attendance_semester`, a.`attendance_date`, a.`attendance_status` FROM `db_attendance_assistance`.`tbl_attendance` AS a INNER JOIN `tbl_student` AS stu ON a.`student_id` = stu.`student_id` INNER JOIN `tbl_semester` AS sem ON stu.`sem_id` = sem.`sem_id` INNER JOIN `tbl_section` AS sec ON a.`section_id` = sec.`sec_id` INNER JOIN `tbl_subject` AS sub ON a.`subject_id` = sub.`subject_id` WHERE a.`attendance_status` = 0 AND a.`attendance_date` = @date AND stu.`dept_id` = 1 GROUP BY a.`student_id`", this.connect);
                 mySqlCommand.Parameters.Clear();
                 mySqlCommand.Parameters.Add(new MySqlParameter("@date", date));
                 mySqlCommand.Parameters.Add(new MySqlParameter("@departmentID", departmentID));

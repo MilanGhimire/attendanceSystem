@@ -58,7 +58,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT s.`sem_id`,d.`dept_name`, s.`sem_name` FROM `db_student_attendance`.`tbl_semester` AS s INNER JOIN `tbl_department` AS d ON s.`dept_id` = d.`dept_id` WHERE d.`dept_id` = @departmentID; ", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT s.`sem_id`,d.`dept_name`, s.`sem_name` FROM `db_attendance_assistance`.`tbl_semester` AS s INNER JOIN `tbl_department` AS d ON s.`dept_id` = d.`dept_id` WHERE d.`dept_id` = @departmentID; ", this.connect);
                 mySqlCommand.Parameters.Clear();
                 mySqlCommand.Parameters.Add(new MySqlParameter("@departmentID", departmentID));
                 using (MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader())
@@ -89,7 +89,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `sem_id`, `dept_id`, `sem_name` FROM `db_student_attendance`.`tbl_semester` WHERE `sem_id` = " + this.semesterID + "; ", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `sem_id`, `dept_id`, `sem_name` FROM `db_attendance_assistance`.`tbl_semester` WHERE `sem_id` = " + this.semesterID + "; ", this.connect);
                 //MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
                 //DataTable dataTable = new DataTable();
                 //mySqlDataAdapter.Fill(dataTable);
@@ -113,7 +113,7 @@ namespace StudentAttendence.Controller
         //    try
         //    {
         //        connect.Open();
-        //        MySqlCommand mySqlCommand = new MySqlCommand("UPDATE `db_student_attendance`.`tbl_user_account` SET `ua_username` = @username, `ua_role` = @role, `ua_department_id` = @departmentID WHERE `ua_id` = " + this.ua_id + "; ", connect);
+        //        MySqlCommand mySqlCommand = new MySqlCommand("UPDATE `db_attendance_assistance`.`tbl_user_account` SET `ua_username` = @username, `ua_role` = @role, `ua_department_id` = @departmentID WHERE `ua_id` = " + this.ua_id + "; ", connect);
         //        mySqlCommand.Parameters.Clear();
         //        mySqlCommand.Parameters.Add(new MySqlParameter("@username", username));
         //        mySqlCommand.Parameters.Add(new MySqlParameter("@role", role));

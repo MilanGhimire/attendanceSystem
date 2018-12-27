@@ -29,7 +29,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `role_id`, `role_name` FROM `db_student_attendance`.`tbl_role`; ", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `role_id`, `role_name` FROM `db_attendance_assistance`.`tbl_role`; ", this.connect);
                 MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
                 DataTable dataTable = new DataTable();
                 mySqlDataAdapter.Fill(dataTable);
@@ -55,7 +55,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `role_id`, `role_name` FROM `db_student_attendance`.`tbl_role` WHERE `role_id` = " + roleID + ";", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `role_id`, `role_name` FROM `db_attendance_assistance`.`tbl_role` WHERE `role_id` = " + roleID + ";", this.connect);
                 MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
                 DataTable dataTable = new DataTable();
                 mySqlDataAdapter.Fill(dataTable);

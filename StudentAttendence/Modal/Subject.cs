@@ -147,7 +147,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `subject_id`, `dept_id`, `sem_id`, `teacher_id`, `subject_name` FROM `db_student_attendance`.`tbl_subject` WHERE `subject_id` = " + this.subjectID + ";", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `subject_id`, `dept_id`, `sem_id`, `teacher_id`, `subject_name` FROM `db_attendance_assistance`.`tbl_subject` WHERE `subject_id` = " + this.subjectID + ";", this.connect);
                 MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
                 DataTable dataTable = new DataTable();
                 mySqlDataAdapter.Fill(dataTable);
@@ -172,7 +172,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("UPDATE `db_student_attendance`.`tbl_subject` SET `dept_id` = @department_id, `sem_id` = @semester, `teacher_id` = @teacher_id, `subject_name` = @subject WHERE `subject_id` = " + this.subjectID + "; ", connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("UPDATE `db_attendance_assistance`.`tbl_subject` SET `dept_id` = @department_id, `sem_id` = @semester, `teacher_id` = @teacher_id, `subject_name` = @subject WHERE `subject_id` = " + this.subjectID + "; ", connect);
                 mySqlCommand.Parameters.Clear();
                 mySqlCommand.Parameters.Add(new MySqlParameter("@department_id", department_id));
                 mySqlCommand.Parameters.Add(new MySqlParameter("@semester", semester));
@@ -199,9 +199,9 @@ namespace StudentAttendence.Controller
         {
             try
             {
-                //SELECT a.`attendace_id`, stu.`student_name`, a.`teacher_id`, a.`section_id`, a.`subject_id`, a.`attendance_semester`, a.`attendance_date`, a.`attendance_status` FROM `db_student_attendance`.`tbl_attendance` AS a INNER JOIN `tbl_student` AS stu ON a.`student_id` = stu.`student_id` WHERE a.`section_id` = 1 AND a.`subject_id` = 1 AND a.`subject_id` = 1
+                //SELECT a.`attendace_id`, stu.`student_name`, a.`teacher_id`, a.`section_id`, a.`subject_id`, a.`attendance_semester`, a.`attendance_date`, a.`attendance_status` FROM `db_attendance_assistance`.`tbl_attendance` AS a INNER JOIN `tbl_student` AS stu ON a.`student_id` = stu.`student_id` WHERE a.`section_id` = 1 AND a.`subject_id` = 1 AND a.`subject_id` = 1
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `subject_id`, `dept_id`, `sem_id`, `subject_section_id`, `teacher_id`, `subject_name` FROM `db_student_attendance`.`tbl_subject` WHERE `dept_id` = 1 AND `sem_id` = 1 AND `subject_section_id` = 1", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `subject_id`, `dept_id`, `sem_id`, `subject_section_id`, `teacher_id`, `subject_name` FROM `db_attendance_assistance`.`tbl_subject` WHERE `dept_id` = 1 AND `sem_id` = 1 AND `subject_section_id` = 1", this.connect);
                 mySqlCommand.Parameters.Clear();
                 using (MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader())
                 {
@@ -210,7 +210,7 @@ namespace StudentAttendence.Controller
 
                     while (mySqlDataReader.Read())
                     {
-                        mySqlCommand = new MySqlCommand("SELECT stu.`student_name`, a.`teacher_id`, a.`section_id`, a.`subject_id`, a.`attendance_semester`, a.`attendance_date`, SUM(a.`attendance_status`) AS 'Present', COUNT(a.`attendance_status`) AS 'Total' FROM `db_student_attendance`.`tbl_attendance` AS a INNER JOIN `tbl_student` AS stu ON a.`student_id` = stu.`student_id` WHERE a.`subject_id` = 4 AND a.`section_id` = 1 GROUP BY stu.`student_name`", this.connect);
+                        mySqlCommand = new MySqlCommand("SELECT stu.`student_name`, a.`teacher_id`, a.`section_id`, a.`subject_id`, a.`attendance_semester`, a.`attendance_date`, SUM(a.`attendance_status`) AS 'Present', COUNT(a.`attendance_status`) AS 'Total' FROM `db_attendance_assistance`.`tbl_attendance` AS a INNER JOIN `tbl_student` AS stu ON a.`student_id` = stu.`student_id` WHERE a.`subject_id` = 4 AND a.`section_id` = 1 GROUP BY stu.`student_name`", this.connect);
                         using (MySqlDataReader mySUBSqlDataReader = mySqlCommand.ExecuteReader())
                         {
                             //To count how many rows are fetched from Database

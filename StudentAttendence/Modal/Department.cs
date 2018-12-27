@@ -50,7 +50,7 @@ namespace StudentAttendence.Controller
                     mySqlCommand.ExecuteNonQuery();
 
                     //Get DepartmentID to insert the 
-                    mySqlCommand.CommandText = "SELECT `dept_id`, `dept_name`, `gradutaion_type`, `course_duration` FROM `db_student_attendance`.`tbl_department` WHERE `dept_name` = @name; ";
+                    mySqlCommand.CommandText = "SELECT `dept_id`, `dept_name`, `gradutaion_type`, `course_duration` FROM `db_attendance_assistance`.`tbl_department` WHERE `dept_name` = @name; ";
                     mySqlCommand.Parameters.Clear();
                     mySqlCommand.Parameters.Add(new MySqlParameter("@name", name));
                     mySqlCommand.ExecuteNonQuery();
@@ -63,7 +63,7 @@ namespace StudentAttendence.Controller
                     //Insert the semester names
                     for (int i = 0; i < duration; i++)
                     {
-                        mySqlCommand.CommandText = "INSERT INTO `db_student_attendance`.`tbl_semester` (`dept_id`, `sem_name`) VALUES(@departmentID, @semesterName);";
+                        mySqlCommand.CommandText = "INSERT INTO `db_attendance_assistance`.`tbl_semester` (`dept_id`, `sem_name`) VALUES(@departmentID, @semesterName);";
                         mySqlCommand.Parameters.Clear();
                         mySqlCommand.Parameters.Add(new MySqlParameter("@departmentID", Convert.ToInt32(dataTable.Rows[0]["dept_id"])));
                         mySqlCommand.Parameters.Add(new MySqlParameter("@semesterName", durationNames[i] + " " + type));
@@ -159,7 +159,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `dept_id`, `dept_name`, `gradutaion_type`, `course_duration` FROM `db_student_attendance`.`tbl_department`;", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `dept_id`, `dept_name`, `gradutaion_type`, `course_duration` FROM `db_attendance_assistance`.`tbl_department`;", this.connect);
                 using (MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader())
                 {
                     //To count how many rows are fetched from Database
@@ -188,7 +188,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `dept_id`, `dept_name`, `gradutaion_type`, `course_duration` FROM `db_student_attendance`.`tbl_department` WHERE `dept_id` = " + this.departmentID + ";", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `dept_id`, `dept_name`, `gradutaion_type`, `course_duration` FROM `db_attendance_assistance`.`tbl_department` WHERE `dept_id` = " + this.departmentID + ";", this.connect);
                 MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
                 DataTable dataTable = new DataTable();
                 mySqlDataAdapter.Fill(dataTable);
@@ -214,7 +214,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("UPDATE `db_student_attendance`.`tbl_department` SET `dept_name` = @departmentName, `gradutaion_type` = @courseType, `course_duration` = @duration WHERE `dept_id` = " + this.departmentID + "; ", connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("UPDATE `db_attendance_assistance`.`tbl_department` SET `dept_name` = @departmentName, `gradutaion_type` = @courseType, `course_duration` = @duration WHERE `dept_id` = " + this.departmentID + "; ", connect);
                 mySqlCommand.Parameters.Clear();
                 mySqlCommand.Parameters.Add(new MySqlParameter("@departmentName", departmentName));
                 mySqlCommand.Parameters.Add(new MySqlParameter("@courseType", courseType));
@@ -242,7 +242,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `dept_id`, `dept_name`, `gradutaion_type`, `course_duration` FROM `db_student_attendance`.`tbl_department` WHERE `dept_id` = " + departmentID + ";", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `dept_id`, `dept_name`, `gradutaion_type`, `course_duration` FROM `db_attendance_assistance`.`tbl_department` WHERE `dept_id` = " + departmentID + ";", this.connect);
                 MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
                 DataTable dataTable = new DataTable();
                 mySqlDataAdapter.Fill(dataTable);

@@ -146,7 +146,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `teacher_id`, `teacher_name`, `teacher_contact`, `teacher_address`, `teacher_email`, `dept_id` FROM `db_student_attendance`.`tbl_teacher` WHERE `teacher_id` = " + this.teacherID + "; ", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `teacher_id`, `teacher_name`, `teacher_contact`, `teacher_address`, `teacher_email`, `dept_id` FROM `db_attendance_assistance`.`tbl_teacher` WHERE `teacher_id` = " + this.teacherID + "; ", this.connect);
                 MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
                 DataTable dataTable = new DataTable();
                 mySqlDataAdapter.Fill(dataTable);
@@ -172,7 +172,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("UPDATE `db_student_attendance`.`tbl_teacher` SET `teacher_name` = @name, `teacher_contact` = @contact, `teacher_address` = @address, `teacher_email` = @email, `dept_id` = @department_id WHERE `teacher_id` = " + this.teacherID + "; ", connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("UPDATE `db_attendance_assistance`.`tbl_teacher` SET `teacher_name` = @name, `teacher_contact` = @contact, `teacher_address` = @address, `teacher_email` = @email, `dept_id` = @department_id WHERE `teacher_id` = " + this.teacherID + "; ", connect);
                 mySqlCommand.Parameters.Clear();
                 mySqlCommand.Parameters.Add(new MySqlParameter("@name", name));
                 mySqlCommand.Parameters.Add(new MySqlParameter("@contact", contact));

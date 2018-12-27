@@ -62,7 +62,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT s.`student_id`, d.`dept_name`, sem.`sem_name`, sec.`sec_name`, s.`student_name`, s.`student_card_id`, s.`student_contact`, s.`parents_contact`, s.`student_address`, s.`student_email` FROM `db_student_attendance`.`tbl_student` AS s INNER JOIN `tbl_department` AS d ON s.`dept_id` = d.`dept_id` INNER JOIN `tbl_semester` AS sem ON s.`sem_id` = sem.`sem_id` INNER JOIN `tbl_section` AS sec ON s.`sec_id` = sec.`sec_id`; ", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT s.`student_id`, d.`dept_name`, sem.`sem_name`, sec.`sec_name`, s.`student_name`, s.`student_card_id`, s.`student_contact`, s.`parents_contact`, s.`student_address`, s.`student_email` FROM `db_attendance_assistance`.`tbl_student` AS s INNER JOIN `tbl_department` AS d ON s.`dept_id` = d.`dept_id` INNER JOIN `tbl_semester` AS sem ON s.`sem_id` = sem.`sem_id` INNER JOIN `tbl_section` AS sec ON s.`sec_id` = sec.`sec_id`; ", this.connect);
                 using (MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader())
                 {
                     //To count how many rows are fetched from Database
@@ -91,7 +91,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `student_id`, `dept_id`, `sem_id`, `sec_id`, `student_name`, `student_card_id`, `student_contact`, `parents_contact`, `student_address`, `student_email` FROM `db_student_attendance`.`tbl_student` WHERE `student_id` = " + this.studentID + "; ", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `student_id`, `dept_id`, `sem_id`, `sec_id`, `student_name`, `student_card_id`, `student_contact`, `parents_contact`, `student_address`, `student_email` FROM `db_attendance_assistance`.`tbl_student` WHERE `student_id` = " + this.studentID + "; ", this.connect);
                 MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
                 DataTable dataTable = new DataTable();
                 mySqlDataAdapter.Fill(dataTable);
@@ -121,7 +121,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("UPDATE `db_student_attendance`.`tbl_student` SET `dept_id` = @department_id, `sem_id` = @semester_id, `sec_id` = @section_id, `student_name` = @name, `student_card_id` = @IDcardNumber, `student_contact` = @studentContact, `parents_contact` = @parentContact, `student_address` = @address, `student_email` = @email WHERE `student_id` = " + this.studentID + "; ", connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("UPDATE `db_attendance_assistance`.`tbl_student` SET `dept_id` = @department_id, `sem_id` = @semester_id, `sec_id` = @section_id, `student_name` = @name, `student_card_id` = @IDcardNumber, `student_contact` = @studentContact, `parents_contact` = @parentContact, `student_address` = @address, `student_email` = @email WHERE `student_id` = " + this.studentID + "; ", connect);
                 mySqlCommand.Parameters.Clear();
                 mySqlCommand.Parameters.Add(new MySqlParameter("@department_id", department_id));
                 mySqlCommand.Parameters.Add(new MySqlParameter("@semester_id", semester_id));
