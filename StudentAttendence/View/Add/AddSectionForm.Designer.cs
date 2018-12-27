@@ -48,7 +48,7 @@
             this.buttonSectionSubmit.Location = new System.Drawing.Point(191, 6);
             this.buttonSectionSubmit.Name = "buttonSectionSubmit";
             this.buttonSectionSubmit.Size = new System.Drawing.Size(83, 31);
-            this.buttonSectionSubmit.TabIndex = 25;
+            this.buttonSectionSubmit.TabIndex = 0;
             this.buttonSectionSubmit.Text = "Submit";
             this.buttonSectionSubmit.UseVisualStyleBackColor = true;
             this.buttonSectionSubmit.Click += new System.EventHandler(this.buttonSectionSubmit_Click);
@@ -89,7 +89,7 @@
             this.textBoxSectionName1.Location = new System.Drawing.Point(3, 3);
             this.textBoxSectionName1.Name = "textBoxSectionName1";
             this.textBoxSectionName1.Size = new System.Drawing.Size(175, 25);
-            this.textBoxSectionName1.TabIndex = 29;
+            this.textBoxSectionName1.TabIndex = 1;
             // 
             // AddSectionLinkLabel
             // 
@@ -97,7 +97,7 @@
             this.AddSectionLinkLabel.Location = new System.Drawing.Point(3, 31);
             this.AddSectionLinkLabel.Name = "AddSectionLinkLabel";
             this.AddSectionLinkLabel.Size = new System.Drawing.Size(32, 17);
-            this.AddSectionLinkLabel.TabIndex = 30;
+            this.AddSectionLinkLabel.TabIndex = 1;
             this.AddSectionLinkLabel.TabStop = true;
             this.AddSectionLinkLabel.Text = "Add";
             this.AddSectionLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AddSectionLinkLabel_LinkClicked);
@@ -136,7 +136,7 @@
             this.comboBoxSemesterName.Location = new System.Drawing.Point(203, 53);
             this.comboBoxSemesterName.Name = "comboBoxSemesterName";
             this.comboBoxSemesterName.Size = new System.Drawing.Size(175, 25);
-            this.comboBoxSemesterName.TabIndex = 31;
+            this.comboBoxSemesterName.TabIndex = 0;
             // 
             // AddSectionForm
             // 

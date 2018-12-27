@@ -5,7 +5,7 @@ namespace StudentAttendence.Controller
 {
     class Database
     {
-        public static String connectionString = "Data Source = localhost; user = root; password = @part; database = db_student_attendance";
+        public static String connectionString = "Data Source = localhost; user = root; password = @part; database = db_attendance_assistance";
         private MySqlConnection connect;
 
         public MySqlConnection getDatabaseConnection()

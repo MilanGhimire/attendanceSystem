@@ -6,16 +6,19 @@ namespace StudentAttendence.View.View
     public partial class ViewSectionForm : Form
     {
         Controller.Section section;
+        public Controller.UserAccount userAccount; //For user identification
 
-        public ViewSectionForm()
+        public ViewSectionForm(Controller.UserAccount ua)
         {
             InitializeComponent();
             section = new Controller.Section();
+            userAccount = ua;
         }
 
         private void ViewSectionForm_Load(object sender, EventArgs e)
         {
-            section.GetAllSectionList(dataGridViewSection);
+            MessageBox.Show("Called the User identification constructor." + userAccount.ua_department_id.ToString());
+            section.GetAllSectionList(userAccount.ua_department_id ,dataGridViewSection);
         }
 
         private void dataGridViewSection_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
@@ -36,10 +39,10 @@ namespace StudentAttendence.View.View
                 return;
             }
 
-            AddSectionForm addSectionForm = new AddSectionForm(section.sectionID);
+            AddSectionForm addSectionForm = new AddSectionForm(userAccount, section.sectionID);
             addSectionForm.ShowDialog(this);
             dataGridViewSection.Rows.Clear();
-            section.GetAllSectionList(dataGridViewSection);
+            section.GetAllSectionList(userAccount.ua_department_id, dataGridViewSection);
         }
     }
 }

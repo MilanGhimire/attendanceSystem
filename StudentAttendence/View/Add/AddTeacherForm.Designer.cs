@@ -59,7 +59,7 @@
             this.buttonTeacherSubmit.Location = new System.Drawing.Point(191, 6);
             this.buttonTeacherSubmit.Name = "buttonTeacherSubmit";
             this.buttonTeacherSubmit.Size = new System.Drawing.Size(83, 31);
-            this.buttonTeacherSubmit.TabIndex = 25;
+            this.buttonTeacherSubmit.TabIndex = 0;
             this.buttonTeacherSubmit.Text = "Submit";
             this.buttonTeacherSubmit.UseVisualStyleBackColor = true;
             this.buttonTeacherSubmit.Click += new System.EventHandler(this.buttonTeacherSubmit_Click);
@@ -124,14 +124,14 @@
             this.textBoxTeacherName.Location = new System.Drawing.Point(3, 3);
             this.textBoxTeacherName.Name = "textBoxTeacherName";
             this.textBoxTeacherName.Size = new System.Drawing.Size(175, 25);
-            this.textBoxTeacherName.TabIndex = 29;
+            this.textBoxTeacherName.TabIndex = 0;
             // 
             // textBoxContact
             // 
             this.textBoxContact.Location = new System.Drawing.Point(3, 34);
             this.textBoxContact.Name = "textBoxContact";
             this.textBoxContact.Size = new System.Drawing.Size(175, 25);
-            this.textBoxContact.TabIndex = 30;
+            this.textBoxContact.TabIndex = 1;
             this.textBoxContact.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxContact_KeyPress);
             // 
             // textBoxAddress
@@ -139,14 +139,14 @@
             this.textBoxAddress.Location = new System.Drawing.Point(3, 65);
             this.textBoxAddress.Name = "textBoxAddress";
             this.textBoxAddress.Size = new System.Drawing.Size(175, 25);
-            this.textBoxAddress.TabIndex = 31;
+            this.textBoxAddress.TabIndex = 2;
             // 
             // textBoxEmail
             // 
             this.textBoxEmail.Location = new System.Drawing.Point(3, 96);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(175, 25);
-            this.textBoxEmail.TabIndex = 32;
+            this.textBoxEmail.TabIndex = 3;
             // 
             // labelTeacherName
             // 

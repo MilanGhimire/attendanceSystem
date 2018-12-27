@@ -44,7 +44,7 @@ namespace StudentAttendence.Controller
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Section: " + ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Load All Section: " + ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             finally
             {
@@ -121,12 +121,14 @@ namespace StudentAttendence.Controller
             return checkValidation;
         }
 
-        public void GetAllSectionList(DataGridView dataGridView)
+        public void GetAllSectionList(int departmentID, DataGridView dataGridView)
         {
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT sec.`sec_id`, d.`dept_name`, sec.`sec_name`, t.`teacher_name`, sem.`sem_name` FROM `db_student_attendance`.`tbl_section` AS sec INNER JOIN `tbl_department` AS d ON sec.`dept_id` = d.`dept_id` INNER JOIN `tbl_teacher` AS t ON sec.`teacher_id` = t.`teacher_id` INNER JOIN `tbl_semester` AS sem ON sec.`sem_id` = sem.`sem_id`; ", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT sec.`sec_id`, d.`dept_name`, sec.`sec_name`, sem.`sem_name` FROM `db_student_attendance`.`tbl_section` AS sec INNER JOIN `tbl_department` AS d ON sec.`dept_id` = d.`dept_id` INNER JOIN `tbl_semester` AS sem ON sec.`sem_id` = sem.`sem_id` WHERE d.`dept_id` = @departmentID; ", this.connect);
+                mySqlCommand.Parameters.Clear();
+                mySqlCommand.Parameters.Add(new MySqlParameter("@departmentID", departmentID));
                 using (MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader())
                 {
                     //To count how many rows are fetched from Database
@@ -135,14 +137,14 @@ namespace StudentAttendence.Controller
                     while (mySqlDataReader.Read())
                     {
                         //To show in dataGridView
-                        dataGridView.Rows.Add(count, mySqlDataReader["dept_name"], mySqlDataReader["sec_name"], mySqlDataReader["teacher_name"], mySqlDataReader["sem_name"], mySqlDataReader["sec_id"]);
+                        dataGridView.Rows.Add(count, mySqlDataReader["dept_name"], mySqlDataReader["sec_name"], "NULL", mySqlDataReader["sem_name"], mySqlDataReader["sec_id"]);
                         count++;
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Section: " + ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Get All Section List: " + ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             finally
             {

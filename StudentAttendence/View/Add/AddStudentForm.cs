@@ -6,20 +6,23 @@ namespace StudentAttendence
     public partial class AddStudentForm : Form
     {
         Controller.Student student;
+        public Controller.UserAccount userAccount;
 
-        public AddStudentForm()
+        public AddStudentForm(Controller.UserAccount ua)
         {
             InitializeComponent();
             student = new Controller.Student();
+            userAccount = ua;
         }
 
-        public AddStudentForm(int stdID)
+        public AddStudentForm(Controller.UserAccount ua, int stdID)
         {
             InitializeComponent();
             student = new Controller.Student
             {
                 studentID = stdID
             };
+            userAccount = ua;
         }
 
         private void CheckFormCall()
@@ -30,7 +33,7 @@ namespace StudentAttendence
                 {
                     LabelAddStudentTitle.Text = "Update Student";
                     Controller.Section section = new Controller.Section();
-                    section.LoadAllSection(1, Convert.ToInt32(comboBoxSemester.SelectedValue), comboBoxSection);
+                    section.LoadAllSection(userAccount.ua_department_id, Convert.ToInt32(comboBoxSemester.SelectedValue), comboBoxSection);
                     student.GetSingleStudent(textBoxStudentName, textBoxCardNumber, textBoxStudentContact, textBoxParentContact, textBoxAddress, textBoxEmail, comboBoxSemester, comboBoxSection);
                 }
                 if (this.Owner is HomeForm)
@@ -50,7 +53,7 @@ namespace StudentAttendence
 
             if ((this.Owner is ViewStudentForm))
             {
-                if (student.UpdateStudent(1, Convert.ToInt32(comboBoxSemester.SelectedValue), Convert.ToInt32(comboBoxSection.SelectedValue), textBoxStudentName.Text, Convert.ToInt32(textBoxCardNumber.Text), Convert.ToDouble(textBoxStudentContact.Text), Convert.ToDouble(textBoxParentContact.Text), textBoxAddress.Text, textBoxEmail.Text))
+                if (student.UpdateStudent(userAccount.ua_department_id, Convert.ToInt32(comboBoxSemester.SelectedValue), Convert.ToInt32(comboBoxSection.SelectedValue), textBoxStudentName.Text, Convert.ToInt32(textBoxCardNumber.Text), Convert.ToDouble(textBoxStudentContact.Text), Convert.ToDouble(textBoxParentContact.Text), textBoxAddress.Text, textBoxEmail.Text))
                 {
                     MessageBox.Show("Updated Successfully.", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Dispose();
@@ -58,7 +61,7 @@ namespace StudentAttendence
             }
             if (this.Owner is HomeForm)
             {
-                if (student.AddNewStudent(1, Convert.ToInt32(comboBoxSemester.SelectedValue), Convert.ToInt32(comboBoxSection.SelectedValue), textBoxStudentName.Text, Convert.ToInt32(textBoxCardNumber.Text), Convert.ToDouble(textBoxStudentContact.Text), Convert.ToDouble(textBoxParentContact.Text), textBoxAddress.Text, textBoxEmail.Text))
+                if (student.AddNewStudent(userAccount.ua_department_id, Convert.ToInt32(comboBoxSemester.SelectedValue), Convert.ToInt32(comboBoxSection.SelectedValue), textBoxStudentName.Text, Convert.ToInt32(textBoxCardNumber.Text), Convert.ToDouble(textBoxStudentContact.Text), Convert.ToDouble(textBoxParentContact.Text), textBoxAddress.Text, textBoxEmail.Text))
                 {
                     MessageBox.Show("Inserted Successfully.", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Dispose();
@@ -154,7 +157,7 @@ namespace StudentAttendence
         private void AddStudentForm_Load(object sender, EventArgs e)
         {
             Controller.Semester semester = new Controller.Semester();
-            semester.LoadAllSemester(1, comboBoxSemester);
+            semester.LoadAllSemester(userAccount.ua_department_id, comboBoxSemester);
 
             CheckFormCall();
         }
@@ -177,8 +180,9 @@ namespace StudentAttendence
 
         private void comboBoxSemester_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            comboBoxSection.SelectedItem = null;
             Controller.Section section = new Controller.Section();
-            section.LoadAllSection(1, Convert.ToInt32(comboBoxSemester.SelectedValue), comboBoxSection);
+            section.LoadAllSection(userAccount.ua_department_id, Convert.ToInt32(comboBoxSemester.SelectedValue), comboBoxSection);
         }
     }
 }

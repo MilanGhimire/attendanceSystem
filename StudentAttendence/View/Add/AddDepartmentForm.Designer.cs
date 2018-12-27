@@ -62,7 +62,7 @@
             this.textBoxDepartmentName.Location = new System.Drawing.Point(190, 76);
             this.textBoxDepartmentName.Name = "textBoxDepartmentName";
             this.textBoxDepartmentName.Size = new System.Drawing.Size(176, 25);
-            this.textBoxDepartmentName.TabIndex = 10;
+            this.textBoxDepartmentName.TabIndex = 0;
             // 
             // comboBoxCourseType
             // 
@@ -73,7 +73,7 @@
             this.comboBoxCourseType.Location = new System.Drawing.Point(190, 110);
             this.comboBoxCourseType.Name = "comboBoxCourseType";
             this.comboBoxCourseType.Size = new System.Drawing.Size(176, 25);
-            this.comboBoxCourseType.TabIndex = 11;
+            this.comboBoxCourseType.TabIndex = 1;
             this.comboBoxCourseType.SelectedValueChanged += new System.EventHandler(this.comboBoxCourseType_SelectedValueChanged);
             // 
             // labelAddDepartmentTitle
@@ -92,7 +92,8 @@
             this.numericUpDownCourseDuration.Name = "numericUpDownCourseDuration";
             this.numericUpDownCourseDuration.ReadOnly = true;
             this.numericUpDownCourseDuration.Size = new System.Drawing.Size(176, 25);
-            this.numericUpDownCourseDuration.TabIndex = 15;
+            this.numericUpDownCourseDuration.TabIndex = 2;
+            this.numericUpDownCourseDuration.Enter += new System.EventHandler(this.numericUpDownCourseDuration_Enter);
             this.numericUpDownCourseDuration.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numericUpDownCourseDuration_KeyPress);
             // 
             // labelNumberOf
@@ -109,7 +110,7 @@
             this.buttonSubmit.Location = new System.Drawing.Point(190, 174);
             this.buttonSubmit.Name = "buttonSubmit";
             this.buttonSubmit.Size = new System.Drawing.Size(83, 31);
-            this.buttonSubmit.TabIndex = 17;
+            this.buttonSubmit.TabIndex = 3;
             this.buttonSubmit.Text = "Submit";
             this.buttonSubmit.UseVisualStyleBackColor = true;
             this.buttonSubmit.Click += new System.EventHandler(this.buttonSubmit_Click);

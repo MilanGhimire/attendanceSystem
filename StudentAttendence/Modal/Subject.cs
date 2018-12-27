@@ -113,7 +113,7 @@ namespace StudentAttendence.Controller
             return checkInsertion;
         }
 
-        public void GetAllSubjectList(DataGridView dataGridView)
+        public void GetAllSubjectList(int departmentID, DataGridView dataGridView)
         {
             try
             {
@@ -195,7 +195,7 @@ namespace StudentAttendence.Controller
             return checkValidation;
         }
 
-        public void GetSubject(DataGridView dataGridView)
+        public void GetSubject(int departmentID, DataGridView dataGridView)
         {
             try
             {

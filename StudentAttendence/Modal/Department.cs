@@ -27,17 +27,64 @@ namespace StudentAttendence.Controller
         public bool AddNewDepartment(String name, String type, int duration)
         {
             bool checkInsertion = false;
+            String[] durationNames = { "First", "Second", "Third", "Forth", "Fifth", "Sixth", "Seventh", "Eight", "Nineth", "Thenth" };
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("INSERT INTO `tbl_department`(`dept_name`, `gradutaion_type`, `course_duration`) VALUES (@name, @type, @duration)", connect);
-                mySqlCommand.Parameters.Clear();
-                mySqlCommand.Parameters.Add(new MySqlParameter("@name", name));
-                mySqlCommand.Parameters.Add(new MySqlParameter("@type", type));
-                mySqlCommand.Parameters.Add(new MySqlParameter("@duration", duration));
-                if (mySqlCommand.ExecuteNonQuery() > 0)
+                MySqlCommand mySqlCommand = connect.CreateCommand();
+                MySqlTransaction mySqlTransaction;
+                //Start a local transaction
+                mySqlTransaction = connect.BeginTransaction();
+                //Must assign both transaction object and connection to Command object for a pending local transaction
+                mySqlCommand.Connection = connect;
+                mySqlCommand.Transaction = mySqlTransaction;
+
+                try
                 {
+                    //Department Inserted
+                    mySqlCommand.CommandText = "INSERT INTO `tbl_department`(`dept_name`, `gradutaion_type`, `course_duration`) VALUES (@name, @type, @duration)";
+                    mySqlCommand.Parameters.Clear();
+                    mySqlCommand.Parameters.Add(new MySqlParameter("@name", name));
+                    mySqlCommand.Parameters.Add(new MySqlParameter("@type", type));
+                    mySqlCommand.Parameters.Add(new MySqlParameter("@duration", duration));
+                    mySqlCommand.ExecuteNonQuery();
+
+                    //Get DepartmentID to insert the 
+                    mySqlCommand.CommandText = "SELECT `dept_id`, `dept_name`, `gradutaion_type`, `course_duration` FROM `db_student_attendance`.`tbl_department` WHERE `dept_name` = @name; ";
+                    mySqlCommand.Parameters.Clear();
+                    mySqlCommand.Parameters.Add(new MySqlParameter("@name", name));
+                    mySqlCommand.ExecuteNonQuery();
+
+                    MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
+                    DataTable dataTable = new DataTable();
+                    mySqlDataAdapter.Fill(dataTable);
+                    //MessageBox.Show(dataTable.Rows[0]["dept_name"].ToString());
+
+                    //Insert the semester names
+                    for (int i = 0; i < duration; i++)
+                    {
+                        mySqlCommand.CommandText = "INSERT INTO `db_student_attendance`.`tbl_semester` (`dept_id`, `sem_name`) VALUES(@departmentID, @semesterName);";
+                        mySqlCommand.Parameters.Clear();
+                        mySqlCommand.Parameters.Add(new MySqlParameter("@departmentID", Convert.ToInt32(dataTable.Rows[0]["dept_id"])));
+                        mySqlCommand.Parameters.Add(new MySqlParameter("@semesterName", durationNames[i] + " " + type));
+                        mySqlCommand.ExecuteNonQuery();
+                    }
+
+                    mySqlTransaction.Commit();
+                    //Both transactions are written in the database.
                     checkInsertion = true;
+                }
+                catch (Exception ex)
+                {
+                    try
+                    {
+                        mySqlTransaction.Rollback();
+                    }
+                    catch (MySqlException e)
+                    {
+                        MessageBox.Show("An exception of type " + e.GetType() + "was encountered while attemption to rollback the transaction.", "Error !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    MessageBox.Show("An exception of type " + ex.GetType() + "was encountered while attemption to inserting the data.\n Neither record was written to database.", "Error !", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)

@@ -6,17 +6,19 @@ namespace StudentAttendence.View.View
     public partial class ViewSubjectForm : Form
     {
         Controller.Subject subject;
+        public Controller.UserAccount userAccount;
 
-        public ViewSubjectForm()
+        public ViewSubjectForm(Controller.UserAccount ua)
         {
             InitializeComponent();
             subject = new Controller.Subject();
+            userAccount = ua;
         }
 
         private void ViewSubjectForm_Load(object sender, EventArgs e)
         {
             Controller.Subject subject = new Controller.Subject();
-            subject.GetAllSubjectList(dataGridViewSubject);
+            subject.GetAllSubjectList(userAccount.ua_department_id, dataGridViewSubject);
         }
 
         private void dataGridViewSubject_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
@@ -37,10 +39,10 @@ namespace StudentAttendence.View.View
                 return;
             }
 
-            AddSubjectForm addSubjectForm = new AddSubjectForm(subject.subjectID);
+            AddSubjectForm addSubjectForm = new AddSubjectForm(userAccount, subject.subjectID);
             addSubjectForm.ShowDialog(this);
             dataGridViewSubject.Rows.Clear();
-            subject.GetAllSubjectList(dataGridViewSubject);
+            subject.GetAllSubjectList(userAccount.ua_department_id, dataGridViewSubject);
         }
     }
 }

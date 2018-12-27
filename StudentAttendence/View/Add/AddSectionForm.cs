@@ -7,17 +7,22 @@ namespace StudentAttendence
     {
         public static AddSectionForm addSectionForm;
         private Controller.Section section;
+        public Controller.UserAccount userAccount; //For user identification
         String sectionName;
+        int sectionCount = 1; //For count the number of sections added
+        String[] name; //For names passing in the query 
 
-        public AddSectionForm()
+        public AddSectionForm(Controller.UserAccount ua)
         {
             InitializeComponent();
             addSectionForm = this;
             sectionName = string.Empty;
             section = new Controller.Section();
+            userAccount = ua;
+            MessageBox.Show("Called the User identification constructor.");
         }
 
-        public AddSectionForm(int secId)
+        public AddSectionForm(Controller.UserAccount ua, int secId)
         {
             InitializeComponent();
             sectionName = string.Empty;
@@ -26,11 +31,6 @@ namespace StudentAttendence
                 sectionID = secId
             };
         }
-        //For count the number of sections added
-        int sectionCount = 1;
-
-        //For names passing in the query 
-        String[] name;
 
         private void UpdateFormCall()
         {
@@ -57,7 +57,7 @@ namespace StudentAttendence
 
             if ((this.Owner is View.View.ViewSectionForm))
             {
-                if (section.UpdateSection(1, Convert.ToInt32(comboBoxSemesterName.SelectedValue), textBoxSectionName1.Text))
+                if (section.UpdateSection(userAccount.ua_department_id, Convert.ToInt32(comboBoxSemesterName.SelectedValue), textBoxSectionName1.Text))
                 {
                     MessageBox.Show("Updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Dispose();
@@ -65,7 +65,7 @@ namespace StudentAttendence
             }
             if (this.Owner is HomeForm)
             {
-                if (section.AddNewSection(1, Convert.ToInt32(comboBoxSemesterName.SelectedValue), name, sectionCount))
+                if (section.AddNewSection(userAccount.ua_department_id, Convert.ToInt32(comboBoxSemesterName.SelectedValue), name, sectionCount))
                 {
                     MessageBox.Show("Inserted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Dispose();
@@ -118,7 +118,7 @@ namespace StudentAttendence
 
                     if (sectionName != textBox.Text || sectionName == string.Empty)
                     {
-                        if (section.CheckForSectionName(Convert.ToInt32(comboBoxSemesterName.SelectedValue), textBox.Text, 1))
+                        if (section.CheckForSectionName(Convert.ToInt32(comboBoxSemesterName.SelectedValue), textBox.Text, userAccount.ua_department_id))
                         {
                             MessageBox.Show(textBox.Text + " : already exist in " + this.comboBoxSemesterName.GetItemText(this.comboBoxSemesterName.SelectedItem).ToString() + " semester.", "Error !", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             textBox.Focus();
@@ -138,7 +138,7 @@ namespace StudentAttendence
             name = new String[10] { String.Empty, String.Empty, String.Empty, String.Empty, String.Empty, String.Empty, String.Empty, String.Empty, String.Empty, String.Empty };
 
             Controller.Semester semester = new Controller.Semester();
-            semester.LoadAllSemester(1, comboBoxSemesterName);
+            semester.LoadAllSemester(userAccount.ua_department_id, comboBoxSemesterName);
             UpdateFormCall();
         }
     }

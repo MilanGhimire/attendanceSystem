@@ -52,7 +52,7 @@
             this.comboBoxDepartmentName.Location = new System.Drawing.Point(203, 56);
             this.comboBoxDepartmentName.Name = "comboBoxDepartmentName";
             this.comboBoxDepartmentName.Size = new System.Drawing.Size(175, 25);
-            this.comboBoxDepartmentName.TabIndex = 41;
+            this.comboBoxDepartmentName.TabIndex = 0;
             // 
             // labelDepartment
             // 
@@ -76,7 +76,7 @@
             this.buttonSubjectSubmit.Location = new System.Drawing.Point(191, 6);
             this.buttonSubjectSubmit.Name = "buttonSubjectSubmit";
             this.buttonSubjectSubmit.Size = new System.Drawing.Size(83, 31);
-            this.buttonSubjectSubmit.TabIndex = 25;
+            this.buttonSubjectSubmit.TabIndex = 0;
             this.buttonSubjectSubmit.Text = "Submit";
             this.buttonSubjectSubmit.UseVisualStyleBackColor = true;
             this.buttonSubjectSubmit.Click += new System.EventHandler(this.buttonSubjectSubmit_Click);
@@ -131,21 +131,21 @@
             this.comboBoxRole.Location = new System.Drawing.Point(3, 3);
             this.comboBoxRole.Name = "comboBoxRole";
             this.comboBoxRole.Size = new System.Drawing.Size(175, 25);
-            this.comboBoxRole.TabIndex = 37;
+            this.comboBoxRole.TabIndex = 0;
             // 
             // textBoxUserName
             // 
             this.textBoxUserName.Location = new System.Drawing.Point(3, 34);
             this.textBoxUserName.Name = "textBoxUserName";
             this.textBoxUserName.Size = new System.Drawing.Size(175, 25);
-            this.textBoxUserName.TabIndex = 29;
+            this.textBoxUserName.TabIndex = 1;
             // 
             // textBoxPassword
             // 
             this.textBoxPassword.Location = new System.Drawing.Point(3, 65);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(175, 25);
-            this.textBoxPassword.TabIndex = 38;
+            this.textBoxPassword.TabIndex = 2;
             this.textBoxPassword.UseSystemPasswordChar = true;
             // 
             // labelUsername

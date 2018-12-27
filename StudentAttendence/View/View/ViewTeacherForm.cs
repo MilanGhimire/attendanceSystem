@@ -6,16 +6,18 @@ namespace StudentAttendence.View.View
     public partial class ViewTeacherForm : Form
     {
         Controller.Teacher teacher;
+        public Controller.UserAccount userAccount;
 
-        public ViewTeacherForm()
+        public ViewTeacherForm(Controller.UserAccount ua)
         {
             InitializeComponent();
             teacher = new Controller.Teacher();
+            userAccount = ua;
         }
 
         private void ViewTeacherForm_Load(object sender, EventArgs e)
         {
-            teacher.GetAllTeacherList(dataGridViewTeacher);
+            teacher.GetAllTeacherList(userAccount.ua_department_id, dataGridViewTeacher);
         }
 
         private void dataGridViewTeacher_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
@@ -36,10 +38,10 @@ namespace StudentAttendence.View.View
                 return;
             }
 
-            AddTeacherForm addTeacherForm = new AddTeacherForm(teacher.teacherID);
+            AddTeacherForm addTeacherForm = new AddTeacherForm(userAccount, teacher.teacherID);
             addTeacherForm.ShowDialog(this);
             dataGridViewTeacher.Rows.Clear();
-            teacher.GetAllTeacherList(dataGridViewTeacher);
+            teacher.GetAllTeacherList(userAccount.ua_department_id, dataGridViewTeacher);
         }
     }
 }

@@ -6,16 +6,18 @@ namespace StudentAttendence
     public partial class AddTeacherForm : Form
     {
         Controller.Teacher teacher;
+        public Controller.UserAccount userAccount;
         String teacherName;
 
-        public AddTeacherForm()
+        public AddTeacherForm(Controller.UserAccount ua)
         {
             InitializeComponent();
             teacherName = string.Empty;
             teacher = new Controller.Teacher();
+            userAccount = ua;
         }
 
-        public AddTeacherForm(int teacher_ID)
+        public AddTeacherForm(Controller.UserAccount ua, int teacher_ID)
         {
             InitializeComponent();
             teacherName = string.Empty;
@@ -23,6 +25,7 @@ namespace StudentAttendence
             {
                 teacherID = teacher_ID
             };
+            userAccount = ua;
         }
 
         private void CheckFormCall()
@@ -51,7 +54,7 @@ namespace StudentAttendence
 
             if (teacherName != textBoxTeacherName.Text)
             {
-                if (teacher.CheckForTeacherName(textBoxTeacherName.Text, 1))
+                if (teacher.CheckForTeacherName(textBoxTeacherName.Text, userAccount.ua_department_id))
                 {
                     MessageBox.Show(textBoxTeacherName.Text + " already exists. Please enter unique Teacher name.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     textBoxTeacherName.Focus();
@@ -61,7 +64,7 @@ namespace StudentAttendence
 
             if (this.Owner is View.View.ViewTeacherForm)
             {
-                if (teacher.UpdateTeacher(1, textBoxTeacherName.Text, textBoxContact.Text, textBoxAddress.Text, textBoxEmail.Text))
+                if (teacher.UpdateTeacher(userAccount.ua_department_id, textBoxTeacherName.Text, textBoxContact.Text, textBoxAddress.Text, textBoxEmail.Text))
                 {
                     MessageBox.Show("Updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Dispose();
@@ -69,7 +72,7 @@ namespace StudentAttendence
             }
             if (this.Owner is HomeForm)
             {
-                if (teacher.AddNewTeacher(1, textBoxTeacherName.Text, textBoxContact.Text, textBoxAddress.Text, textBoxEmail.Text))
+                if (teacher.AddNewTeacher(userAccount.ua_department_id, textBoxTeacherName.Text, textBoxContact.Text, textBoxAddress.Text, textBoxEmail.Text))
                 {
                     MessageBox.Show("Inserted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Dispose();

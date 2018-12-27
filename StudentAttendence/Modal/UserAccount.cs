@@ -124,6 +124,65 @@ namespace StudentAttendence.Controller
             }
         }
 
+        public void GetUserName(TextBox Username)
+        {
+            try
+            {
+                connect.Open();
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `ua_id`, `ua_username`, `ua_password`, `ua_role`, `ua_department_id` FROM `db_student_attendance`.`tbl_user_account` WHERE `ua_id` = " + this.ua_id + "; ", this.connect);
+                MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
+                DataTable dataTable = new DataTable();
+                mySqlDataAdapter.Fill(dataTable);
+                //department.SelectedValue = dataTable.Rows[0]["ua_department_id"];
+                Username.Text = dataTable.Rows[0]["ua_username"].ToString();
+                dataTable.Dispose();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Get User Name: " + ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                connect.Close();
+            }
+        }
+
+        public bool CheckOldPassword(TextBox password)
+        {
+            bool checkValidation = false;
+            try
+            {
+                connect.Open();
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `ua_id`, `ua_username`, `ua_password`, `ua_role`, `ua_department_id` FROM `db_student_attendance`.`tbl_user_account` WHERE `ua_id` = " + this.ua_id + "; ", this.connect);
+                MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlCommand);
+                DataTable dataTable = new DataTable();
+                mySqlDataAdapter.Fill(dataTable);
+                if (dataTable.Rows[0]["ua_password"].ToString() == password.Text)
+                {
+                    MessageBox.Show("Admin Old Password is correct.", "Yes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    checkValidation = true;
+                }
+                else
+                {
+                    MessageBox.Show("Admin Old Password is Incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    checkValidation = false;
+                }
+
+                dataTable.Dispose();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Check Old Password: " + ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            finally
+            {
+                connect.Close();
+            }
+            return checkValidation;
+        }
+
         public bool AddNewUserAccount(int department, int role, String username, String password)
         {
             bool checkInsertion = false;
@@ -158,7 +217,7 @@ namespace StudentAttendence.Controller
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT  `ua_id`, `ua_username`, `ua_password`, `ua_role`, `ua_department_id` FROM `db_student_attendance`.`tbl_user_account` WHERE `ua_id` = @name", connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT  `ua_id`, `ua_username`, `ua_password`, `ua_role`, `ua_department_id` FROM `db_student_attendance`.`tbl_user_account` WHERE `ua_username` = @name", connect);
                 mySqlCommand.Parameters.Clear();
                 mySqlCommand.Parameters.Add(new MySqlParameter("@name", name));
 
@@ -203,6 +262,44 @@ namespace StudentAttendence.Controller
             catch (Exception ex)
             {
                 MessageBox.Show("User Account Update: " + ex.Message, "Error !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                connect.Close();
+            }
+            return checkValidation;
+        }
+
+        public bool CheckOldPassword(int userID, String password)
+        {
+            bool checkValidation = false;
+            try
+            {
+                connect.Open();
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT `ua_id`, `ua_username`, `ua_password`,  `ua_role`, `ua_department_id` FROM `db_student_attendance`.`tbl_user_account` WHERE `ua_id` = @userID AND  `ua_password` = @password", connect);
+                mySqlCommand.Parameters.Clear();
+                mySqlCommand.Parameters.Add(new MySqlParameter("@userID", userID));
+                mySqlCommand.Parameters.Add(new MySqlParameter("@password", password));
+
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(mySqlCommand);
+                DataTable dataTable = new DataTable();
+                dataAdapter.Fill(dataTable);
+                //MessageBox.Show(dataTable.Rows.Count.ToString());
+
+                if (dataTable.Rows[0]["password"].ToString() == password)
+                {
+                    MessageBox.Show("Admin Old Password is correct.", "Yes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    checkValidation = true;
+                }
+                else
+                {
+                    MessageBox.Show("Admin Old Password is Incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    checkValidation = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("User Account check username: " + ex.Message, "Error !", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {

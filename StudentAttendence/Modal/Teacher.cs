@@ -60,9 +60,9 @@ namespace StudentAttendence.Controller
                 MySqlCommand mySqlCommand = new MySqlCommand("INSERT INTO `tbl_teacher`(`teacher_name`, `teacher_contact`, `teacher_address`, `teacher_email`, `dept_id`) VALUES (@name, @contact, @address, @email, @department_id)", connect);
                 mySqlCommand.Parameters.Clear();
                 mySqlCommand.Parameters.Add(new MySqlParameter("@name", name));
-                mySqlCommand.Parameters.Add(new MySqlParameter("@semester", contact));
-                mySqlCommand.Parameters.Add(new MySqlParameter("@semester", address));
-                mySqlCommand.Parameters.Add(new MySqlParameter("@semester", email));
+                mySqlCommand.Parameters.Add(new MySqlParameter("@contact", contact));
+                mySqlCommand.Parameters.Add(new MySqlParameter("@address", address));
+                mySqlCommand.Parameters.Add(new MySqlParameter("@email", email));
                 mySqlCommand.Parameters.Add(new MySqlParameter("@department_id", department_id));
                 if (mySqlCommand.ExecuteNonQuery() > 0)
                 {
@@ -112,7 +112,7 @@ namespace StudentAttendence.Controller
             return checkValidation;
         }
 
-        public void GetAllTeacherList(DataGridView dataGridView)
+        public void GetAllTeacherList(int departmentID, DataGridView dataGridView)
         {
             try
             {

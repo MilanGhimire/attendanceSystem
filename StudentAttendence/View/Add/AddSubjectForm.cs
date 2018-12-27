@@ -6,16 +6,18 @@ namespace StudentAttendence
     public partial class AddSubjectForm : Form
     {
         Controller.Subject subject;
+        public Controller.UserAccount userAccount;
         String subjectName;
 
-        public AddSubjectForm()
+        public AddSubjectForm(Controller.UserAccount ua)
         {
             InitializeComponent();
             subjectName = string.Empty;
             subject = new Controller.Subject();
+            userAccount = ua;
         }
 
-        public AddSubjectForm(int subID)
+        public AddSubjectForm(Controller.UserAccount ua, int subID)
         {
             InitializeComponent();
             subjectName = string.Empty;
@@ -23,6 +25,7 @@ namespace StudentAttendence
             {
                 subjectID = subID
             };
+            userAccount = ua;
         }
 
         private void CheckFormCall()
@@ -47,8 +50,8 @@ namespace StudentAttendence
         {
             Controller.Semester semester = new Controller.Semester();
             Controller.Teacher teacher = new Controller.Teacher();
-            semester.LoadAllSemester(1, comboBoxSemesterName);
-            teacher.LoadAllTeacher(1, comboBoxTeacherName);
+            semester.LoadAllSemester(userAccount.ua_department_id, comboBoxSemesterName);
+            teacher.LoadAllTeacher(userAccount.ua_department_id, comboBoxTeacherName);
 
             CheckFormCall();
         }
@@ -63,7 +66,7 @@ namespace StudentAttendence
 
             if (subjectName != textBoxSubjectName.Text)
             {
-                if (subject.CheckForSubjectName(Convert.ToInt32(comboBoxSemesterName.SelectedValue), textBoxSubjectName.Text, 1))
+                if (subject.CheckForSubjectName(Convert.ToInt32(comboBoxSemesterName.SelectedValue), textBoxSubjectName.Text, userAccount.ua_department_id))
                 {
                     MessageBox.Show(textBoxSubjectName.Text + " is already added.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
@@ -72,7 +75,7 @@ namespace StudentAttendence
 
             if ((this.Owner is View.View.ViewSubjectForm))
             {
-                if (subject.UpdateSubject(1, Convert.ToInt32(comboBoxSemesterName.SelectedValue), textBoxSubjectName.Text, Convert.ToInt32(comboBoxTeacherName.SelectedValue)))
+                if (subject.UpdateSubject(userAccount.ua_department_id, Convert.ToInt32(comboBoxSemesterName.SelectedValue), textBoxSubjectName.Text, Convert.ToInt32(comboBoxTeacherName.SelectedValue)))
                 {
                     MessageBox.Show("Updated Successfully.", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Dispose();
@@ -80,7 +83,7 @@ namespace StudentAttendence
             }
             if (this.Owner is HomeForm)
             {
-                if (subject.AddNewSubject(1, Convert.ToInt32(comboBoxSemesterName.SelectedValue), textBoxSubjectName.Text, Convert.ToInt32(comboBoxTeacherName.SelectedValue)))
+                if (subject.AddNewSubject(userAccount.ua_department_id, Convert.ToInt32(comboBoxSemesterName.SelectedValue), textBoxSubjectName.Text, Convert.ToInt32(comboBoxTeacherName.SelectedValue)))
                 {
                     MessageBox.Show("Inserted Successfully.", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Dispose();

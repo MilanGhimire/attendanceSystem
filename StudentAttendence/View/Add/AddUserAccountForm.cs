@@ -79,7 +79,7 @@ namespace StudentAttendence
             {
                 if (userAccount.CheckForUserName(textBoxUserName.Text))
                 {
-                    MessageBox.Show(textBoxUserName.Text + " already exists. Please enter unique Department name.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Username : '" +textBoxUserName.Text + "' already exists. Please enter unique Username.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     textBoxUserName.Focus();
                     return false;
                 }

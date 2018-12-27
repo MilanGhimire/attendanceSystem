@@ -71,3 +71,4 @@ C:\Users\MIlan\Documents\attendanceSystem\StudentAttendence\obj\Debug\StudentAtt
 C:\Users\MIlan\Documents\attendanceSystem\StudentAttendence\obj\Debug\StudentAttendence.View.View.ViewSemesterForm.resources
 C:\Users\MIlan\Documents\attendanceSystem\StudentAttendence\obj\Debug\StudentAttendence.View.TestForm.resources
 C:\Users\MIlan\Documents\attendanceSystem\StudentAttendence\obj\Debug\StudentAttendence.View.View.ViewTodayAttandance.resources
+C:\Users\MIlan\Documents\attendanceSystem\StudentAttendence\obj\Debug\StudentAttendence.View.Add.ChangeUsernamePassword.resources

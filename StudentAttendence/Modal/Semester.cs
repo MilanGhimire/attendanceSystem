@@ -53,12 +53,14 @@ namespace StudentAttendence.Controller
             }
         }
 
-        public void GetAllSemesterList(DataGridView dataGridView)
+        public void GetAllSemesterList(int departmentID,DataGridView dataGridView)
         {
             try
             {
                 connect.Open();
-                MySqlCommand mySqlCommand = new MySqlCommand("SELECT s.`sem_id`,d.`dept_name`, s.`sem_name` FROM `db_student_attendance`.`tbl_semester` AS s INNER JOIN `tbl_department` AS d ON s.`dept_id` = d.`dept_id`; ", this.connect);
+                MySqlCommand mySqlCommand = new MySqlCommand("SELECT s.`sem_id`,d.`dept_name`, s.`sem_name` FROM `db_student_attendance`.`tbl_semester` AS s INNER JOIN `tbl_department` AS d ON s.`dept_id` = d.`dept_id` WHERE d.`dept_id` = @departmentID; ", this.connect);
+                mySqlCommand.Parameters.Clear();
+                mySqlCommand.Parameters.Add(new MySqlParameter("@departmentID", departmentID));
                 using (MySqlDataReader mySqlDataReader = mySqlCommand.ExecuteReader())
                 {
                     //To count how many rows are fetched from Database

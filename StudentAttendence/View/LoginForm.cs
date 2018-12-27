@@ -6,6 +6,7 @@ namespace StudentAttendence
     public partial class FormLogin : Form
     {
         public static FormLogin formLogin;
+
         public FormLogin()
         {
             InitializeComponent();
@@ -24,7 +25,9 @@ namespace StudentAttendence
             {
                 UsernameTextBox.Clear();
                 PasswordTextBox.Clear();
+                UsernameTextBox.Focus();
                 HomeForm homeForm = new HomeForm(userAccount);
+                this.Hide();
                 homeForm.ShowDialog();
             }
         }

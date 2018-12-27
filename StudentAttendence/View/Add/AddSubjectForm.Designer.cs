@@ -50,7 +50,7 @@
             this.comboBoxSemesterName.Location = new System.Drawing.Point(203, 56);
             this.comboBoxSemesterName.Name = "comboBoxSemesterName";
             this.comboBoxSemesterName.Size = new System.Drawing.Size(175, 25);
-            this.comboBoxSemesterName.TabIndex = 36;
+            this.comboBoxSemesterName.TabIndex = 0;
             // 
             // labelSemester
             // 
@@ -74,7 +74,7 @@
             this.buttonSubjectSubmit.Location = new System.Drawing.Point(191, 6);
             this.buttonSubjectSubmit.Name = "buttonSubjectSubmit";
             this.buttonSubjectSubmit.Size = new System.Drawing.Size(83, 31);
-            this.buttonSubjectSubmit.TabIndex = 25;
+            this.buttonSubjectSubmit.TabIndex = 0;
             this.buttonSubjectSubmit.Text = "Submit";
             this.buttonSubjectSubmit.UseVisualStyleBackColor = true;
             this.buttonSubjectSubmit.Click += new System.EventHandler(this.buttonSubjectSubmit_Click);
@@ -117,7 +117,7 @@
             this.textBoxSubjectName.Location = new System.Drawing.Point(3, 3);
             this.textBoxSubjectName.Name = "textBoxSubjectName";
             this.textBoxSubjectName.Size = new System.Drawing.Size(175, 25);
-            this.textBoxSubjectName.TabIndex = 29;
+            this.textBoxSubjectName.TabIndex = 0;
             // 
             // comboBoxTeacherName
             // 
@@ -125,7 +125,7 @@
             this.comboBoxTeacherName.Location = new System.Drawing.Point(3, 34);
             this.comboBoxTeacherName.Name = "comboBoxTeacherName";
             this.comboBoxTeacherName.Size = new System.Drawing.Size(175, 25);
-            this.comboBoxTeacherName.TabIndex = 37;
+            this.comboBoxTeacherName.TabIndex = 1;
             // 
             // labelSubjectName
             // 

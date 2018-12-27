@@ -6,11 +6,13 @@ namespace StudentAttendence
     public partial class ViewStudentForm : Form
     {
         Controller.Student student;
+        public Controller.UserAccount userAccount;
 
-        public ViewStudentForm()
+        public ViewStudentForm(Controller.UserAccount ua)
         {
             InitializeComponent();
             student = new Controller.Student();
+            userAccount = ua;
         }
 
         private void ViewStudentForm_Load(object sender, EventArgs e)
@@ -37,7 +39,7 @@ namespace StudentAttendence
                 return;
             }
 
-            AddStudentForm addStudentForm = new AddStudentForm(student.studentID);
+            AddStudentForm addStudentForm = new AddStudentForm(userAccount, student.studentID);
             addStudentForm.ShowDialog(this);
             dataGridViewStudent.Rows.Clear();
             student.GetAllStudentList(dataGridViewStudent);

@@ -31,10 +31,10 @@
             this.buttonViewStudent = new System.Windows.Forms.Button();
             this.buttonViewAttandance = new System.Windows.Forms.Button();
             this.buttonViewTeacher = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuStripHome = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addStudentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addTeacherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addSectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,7 +53,9 @@
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelDepartmentTitle = new System.Windows.Forms.Label();
-            this.menuStrip1.SuspendLayout();
+            this.labelLogout = new System.Windows.Forms.Label();
+            this.buttonViewFullAttandance = new System.Windows.Forms.Button();
+            this.menuStripHome.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonViewStudent
@@ -73,29 +75,30 @@
             this.buttonViewAttandance.TabIndex = 2;
             this.buttonViewAttandance.Text = "View Attandence";
             this.buttonViewAttandance.UseVisualStyleBackColor = true;
+            this.buttonViewAttandance.Click += new System.EventHandler(this.buttonViewAttandance_Click);
             // 
             // buttonViewTeacher
             // 
             this.buttonViewTeacher.Location = new System.Drawing.Point(255, 147);
             this.buttonViewTeacher.Name = "buttonViewTeacher";
-            this.buttonViewTeacher.Size = new System.Drawing.Size(119, 30);
+            this.buttonViewTeacher.Size = new System.Drawing.Size(145, 30);
             this.buttonViewTeacher.TabIndex = 3;
             this.buttonViewTeacher.Text = "View Teacher";
             this.buttonViewTeacher.UseVisualStyleBackColor = true;
             // 
-            // menuStrip1
+            // menuStripHome
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStripHome.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.editToolStripMenuItem,
+            this.addToolStripMenuItem,
             this.toolStripMenuItem1,
             this.preferencesToolStripMenuItem,
             this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(613, 24);
-            this.menuStrip1.TabIndex = 4;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStripHome.Location = new System.Drawing.Point(0, 0);
+            this.menuStripHome.Name = "menuStripHome";
+            this.menuStripHome.Size = new System.Drawing.Size(613, 24);
+            this.menuStripHome.TabIndex = 4;
+            this.menuStripHome.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -111,9 +114,9 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
-            // editToolStripMenuItem
+            // addToolStripMenuItem
             // 
-            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addStudentToolStripMenuItem,
             this.addTeacherToolStripMenuItem,
             this.addSectionToolStripMenuItem,
@@ -121,9 +124,9 @@
             this.addDepartmentToolStripMenuItem,
             this.addSubjectToolStripMenuItem,
             this.addUserAccountToolStripMenuItem});
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
-            this.editToolStripMenuItem.Text = "Add";
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.addToolStripMenuItem.Text = "Add";
             // 
             // addStudentToolStripMenuItem
             // 
@@ -151,6 +154,7 @@
             this.changeUsernamePasswordToolStripMenuItem.Name = "changeUsernamePasswordToolStripMenuItem";
             this.changeUsernamePasswordToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
             this.changeUsernamePasswordToolStripMenuItem.Text = "Change Username/Password";
+            this.changeUsernamePasswordToolStripMenuItem.Click += new System.EventHandler(this.changeUsernamePasswordToolStripMenuItem_Click);
             // 
             // addDepartmentToolStripMenuItem
             // 
@@ -258,26 +262,48 @@
             this.labelDepartmentTitle.TabIndex = 22;
             this.labelDepartmentTitle.Text = "Department";
             // 
+            // labelLogout
+            // 
+            this.labelLogout.AutoSize = true;
+            this.labelLogout.Location = new System.Drawing.Point(552, 48);
+            this.labelLogout.Name = "labelLogout";
+            this.labelLogout.Size = new System.Drawing.Size(49, 17);
+            this.labelLogout.TabIndex = 23;
+            this.labelLogout.Text = "Logout";
+            this.labelLogout.Click += new System.EventHandler(this.labelLogout_Click);
+            // 
+            // buttonViewFullAttandance
+            // 
+            this.buttonViewFullAttandance.Location = new System.Drawing.Point(255, 226);
+            this.buttonViewFullAttandance.Name = "buttonViewFullAttandance";
+            this.buttonViewFullAttandance.Size = new System.Drawing.Size(145, 30);
+            this.buttonViewFullAttandance.TabIndex = 24;
+            this.buttonViewFullAttandance.Text = "View Full Attandence";
+            this.buttonViewFullAttandance.UseVisualStyleBackColor = true;
+            this.buttonViewFullAttandance.Click += new System.EventHandler(this.buttonViewFullAttandance_Click);
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(613, 461);
+            this.Controls.Add(this.buttonViewFullAttandance);
+            this.Controls.Add(this.labelLogout);
             this.Controls.Add(this.labelDepartmentTitle);
             this.Controls.Add(this.buttonViewTeacher);
             this.Controls.Add(this.buttonViewAttandance);
             this.Controls.Add(this.buttonViewStudent);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menuStripHome);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.menuStripHome;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "HomeForm";
             this.Text = "Home";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HomeForm_FormClosing);
             this.Load += new System.EventHandler(this.HomeForm_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStripHome.ResumeLayout(false);
+            this.menuStripHome.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,10 +314,10 @@
         private System.Windows.Forms.Button buttonViewStudent;
         private System.Windows.Forms.Button buttonViewAttandance;
         private System.Windows.Forms.Button buttonViewTeacher;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStripHome;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addStudentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addTeacherToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
@@ -310,5 +336,7 @@
         private System.Windows.Forms.ToolStripMenuItem viewUserAccountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addUserAccountToolStripMenuItem;
         private System.Windows.Forms.Label labelDepartmentTitle;
+        private System.Windows.Forms.Label labelLogout;
+        private System.Windows.Forms.Button buttonViewFullAttandance;
     }
 }

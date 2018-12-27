@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StudentAttendence.View.View
@@ -13,17 +6,19 @@ namespace StudentAttendence.View.View
     public partial class ViewTodayAttandance : Form
     {
         Controller.Attandence attandence;
+        public Controller.UserAccount userAccount;
 
-        public ViewTodayAttandance()
+        public ViewTodayAttandance(Controller.UserAccount ua)
         {
             attandence = new Controller.Attandence();
             InitializeComponent();
+            userAccount = ua;
         }
 
         private void ViewTodayAttandance_Load(object sender, EventArgs e)
         {
             Controller.Semester semester = new Controller.Semester();
-            semester.LoadAllSemester(1, comboBoxSemester);
+            semester.LoadAllSemester(userAccount.ua_department_id, comboBoxSemester);
         }
 
         private void comboBoxSemester_SelectionChangeCommitted(object sender, EventArgs e)
@@ -35,8 +30,8 @@ namespace StudentAttendence.View.View
 
             Controller.Section section = new Controller.Section();
             Controller.Subject subject = new Controller.Subject();
-            section.LoadAllSection(1, Convert.ToInt32(comboBoxSemester.SelectedValue), comboBoxSection);
-            subject.LoadAllSubject(1, Convert.ToInt32(comboBoxSemester.SelectedValue), comboBoxSubject);
+            section.LoadAllSection(userAccount.ua_department_id, Convert.ToInt32(comboBoxSemester.SelectedValue), comboBoxSection);
+            subject.LoadAllSubject(userAccount.ua_department_id, Convert.ToInt32(comboBoxSemester.SelectedValue), comboBoxSubject);
         }
 
         private bool AttandenceValidation()
@@ -60,7 +55,7 @@ namespace StudentAttendence.View.View
             //All filed been selected
             if (comboBoxSection.SelectedItem != null && comboBoxSubject.SelectedItem != null)
             {
-                attandence.GetTodayAttandence(1, Convert.ToInt32(comboBoxSemester.SelectedValue), Convert.ToInt32(comboBoxSection.SelectedValue), Convert.ToInt32(comboBoxSubject.SelectedValue), dataGridViewTodayAttandance);
+                attandence.GetTodayAttandence(userAccount.ua_department_id, Convert.ToInt32(comboBoxSemester.SelectedValue), Convert.ToInt32(comboBoxSection.SelectedValue), Convert.ToInt32(comboBoxSubject.SelectedValue), dataGridViewTodayAttandance);
             }
         }
 
@@ -70,7 +65,7 @@ namespace StudentAttendence.View.View
             DateTime date = Convert.ToDateTime(dateTimePickerDateAttandence.Text);
             string dateFormatofDatabase = "yyyy-MM-dd";
             string attandenceDate = date.ToString(dateFormatofDatabase);
-            attandence.GetAllSpecificDateAbsentList(1, attandenceDate, dataGridViewTodayAttandance);
+            attandence.GetAllSpecificDateAbsentList(userAccount.ua_department_id, attandenceDate, dataGridViewTodayAttandance);
         }
 
         private void buttonHideShow_Click(object sender, EventArgs e)

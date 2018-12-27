@@ -41,6 +41,7 @@ namespace StudentAttendence
                 {
                     labelAddDepartmentTitle.Text = "Update Department";
                     department.GetSingleDepartment(textBoxDepartmentName, comboBoxCourseType, numericUpDownCourseDuration);
+                    numericUpDownCourseDuration.Enabled = false;
                     deptName = textBoxDepartmentName.Text;
                 }
                 if (this.Owner is HomeForm)
@@ -98,9 +99,9 @@ namespace StudentAttendence
                 comboBoxCourseType.Focus();
                 return false;
             }
-            if (numericUpDownCourseDuration.Value < 1)
+            if (numericUpDownCourseDuration.Value < 1 || numericUpDownCourseDuration.Value > 10)
             {
-                MessageBox.Show("Please enter Course Duration.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Please enter valid Course Duration.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 numericUpDownCourseDuration.Focus();
                 return false;
             }
@@ -140,6 +141,11 @@ namespace StudentAttendence
                     this.Dispose();
                 }
             }
+        }
+
+        private void numericUpDownCourseDuration_Enter(object sender, EventArgs e)
+        {
+            numericUpDownCourseDuration.Select(0, numericUpDownCourseDuration.Text.Length);
         }
     }
 }
